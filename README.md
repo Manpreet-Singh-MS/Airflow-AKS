@@ -82,9 +82,7 @@ helm install airflow apache-airflow/airflow --namespace airflow
 
 ## Step 9: Create an Ingress Resource for Airflow
 
-<code>
-kubectl apply -f airflow-ingress.yaml
-</code>
+<code>kubectl apply -f airflow-ingress.yaml</code>
 
 ## Step 10: Get the External IP of the Ingress Controller
 
@@ -120,8 +118,7 @@ kubectl apply -f airflow-ingress.yaml
 
 ### Step 5: Verify HTTPS Access
 
-<code>
-kubectl get secret airflow-tls -n airflow
+<code>kubectl get secret airflow-tls -n airflow
 </code>
 
 ---
