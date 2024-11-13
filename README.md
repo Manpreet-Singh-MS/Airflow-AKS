@@ -37,46 +37,32 @@ az aks create \
 
 ## Step 3: Connect to AKS Cluster
 
-<code>
-az aks get-credentials --resource-group airflow-rg --name airflow-aks-cluster
-</code>
+<code>az aks get-credentials --resource-group airflow-rg --name airflow-aks-cluster</code>
 
 ## Step 4: Install Helm
 
-<code>
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-</code>
+<code>curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash</code>
 
 ## Step 5: Add the Apache Airflow Helm Chart Repository
 
-<code>
-helm repo add apache-airflow https://airflow.apache.org
-helm repo update
-</code>
+<code>helm repo add apache-airflow https://airflow.apache.org
+      helm repo update</code>
 
 ## Step 6: Create a Namespace for Airflow
 
-<code>
-kubectl create namespace airflow
-</code>
+<code>kubectl create namespace airflow</code>
 
 ## Step 7: Install NGINX Ingress Controller
 
-<code>
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
-</code>
+<code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml</code>
 
 This installs the Ingress controller in the `ingress-nginx` namespace. Verify the installation:
 
-<code>
-kubectl get pods -n ingress-nginx
-</code>
+<code>kubectl get pods -n ingress-nginx</code>
 
 ## Step 8: Install Airflow with Helm
 
-<code>
-helm install airflow apache-airflow/airflow --namespace airflow
-</code>
+<code>helm install airflow apache-airflow/airflow --namespace airflow</code>
 
 ## Step 9: Create an Ingress Resource for Airflow
 
@@ -84,40 +70,29 @@ helm install airflow apache-airflow/airflow --namespace airflow
 
 ## Step 10: Get the External IP of the Ingress Controller
 
-<code>
-kubectl get svc -n ingress-nginx
-</code>
+<code>kubectl get svc -n ingress-nginx</code>
 
 ## Optional: Enable HTTPS (TLS)
 
 ### Step 1: Create a TLS Certificate
 
-<code>
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.yaml
-</code>
+<code>kubectl apply -f https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.yaml</code>
 
 ### Step 2: Create a Cluster-issuer.yaml
 
-<code>
-kubectl apply -f cluster-issuer.yaml
-</code>
+<code>kubectl apply -f cluster-issuer.yaml</code>
 
 ### Step 3: Create a Certificate.yaml
 
-<code>
-kubectl apply -f certificate.yaml
-</code>
+<code>kubectl apply -f certificate.yaml</code>
 
 ### Step 4: Update airflow-ingress.yaml to Enable TLS
 
-<code>
-kubectl apply -f airflow-ingress.yaml
-</code>
+<code>kubectl apply -f airflow-ingress.yaml</code>
 
 ### Step 5: Verify HTTPS Access
 
-<code>kubectl get secret airflow-tls -n airflow
-</code>
+<code>kubectl get secret airflow-tls -n airflow</code>
 
 ---
 
