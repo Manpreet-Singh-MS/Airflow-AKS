@@ -22,9 +22,7 @@ This guide outlines the steps to deploy Apache Airflow on Azure Kubernetes Servi
 
 ## Step 1: Create a Resource Group
 
-<code>
-az group create --name airflow-rg --location centralindia
-</code>
+<code>az group create --name airflow-rg --location centralindia</code>
 
 ## Step 2: Create an AKS Cluster
 
